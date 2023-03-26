@@ -9,6 +9,7 @@
 int printf_string(va_list arg)
 {
 	char *str = va_arg(arg, char *);
+	
 	int i, count = 0;
 
 	if (str == NULL)

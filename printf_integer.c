@@ -8,7 +8,9 @@
 int printf_integer(va_list args)
 {
 	int n = va_arg(args, int);
+
 	char buffer[12];
+
 	int i, count = 0;
 
 	if (n < 0)
@@ -27,5 +29,5 @@ int printf_integer(va_list args)
 	while (--i >= 0)
 		count += _putchar(buffer[i]);
 
-	return count;
+	return (count);
 }

@@ -10,7 +10,9 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+
 	int i, count = 0;
+	
 	ConvSpec convs[] = {
 		{"c", printf_char},
 		{"s", printf_string},
