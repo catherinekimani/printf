@@ -24,6 +24,6 @@ int printf_char(va_list arg);
 int printf_string(va_list arg);
 int printf_percent(void);
 int printf_integer(va_list arg);
-int _strlen(char *s);
+int printf_rev(va_list arg);
 int _putchar(char c);
 #endif /*MAIN_H*/

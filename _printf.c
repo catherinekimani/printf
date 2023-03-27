@@ -9,45 +9,46 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-
-	int i, count = 0;
-	
 	ConvSpec convs[] = {
 		{"c", printf_char},
 		{"s", printf_string},
 		{"%", printf_percent},
 		{"d", printf_integer},
 		{"i", printf_integer},
-		{NULL, NULL}};
+		{"r", printf_rev}
+		};
+
+	va_list args;
+
+	int i = 0, j, len = 0;
 
 	va_start(args, format);
 
-	for (i = 0; format[i]; i++)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
+	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
-		{
-			int j;
+		int match_found = 0;
 
-			for (j = 0; convs[j].spec != NULL; j++)
-			{
-				if (format[i + 1] == *(convs[j].spec))
-				{
-					count += convs[j].func(args);
-					i++;
-					break;
-				}
-			}
-			if (convs[j].spec == NULL)
-				count += _putchar('%');
-		}
-		else
+		for (j = 0; j < 5; j++)
 		{
-			count += _putchar(format[i]);
+			if (convs[j].spec[0] == format[i] && convs[j].spec[1] == format[i + 1])
+			{
+				len += convs[j].func(args);
+				i += 2;
+				match_found = 1;
+				break;
+			}
+		}
+
+		if (!match_found)
+		{
+			_putchar(format[i]);
+			len++;
+			i++;
 		}
 	}
 
 	va_end(args);
-
-	return (count);
+	return (len);
 }
