@@ -10,17 +10,37 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-
-	int i, count = 0;
-
-	ConvSpec convs[] = {
-		{"%c", printf_char},
-		{"%s", printf_string},
-		{"%%", printf_percent},
-		{"%d", printf_integer},
-		{"%i", printf_integer}};
+	int count = 0;
 
 	va_start(args, format);
+
+	if (format == NULL)
+		return (-1);
+
+	count = _printf_format_string(args, format);
+
+	va_end(args);
+
+	return (count);
+}
+
+/**
+ * _printf_format_string - produces output according to a format
+ * @args: the list of arguments
+ * @format: the format string to use
+ *
+ * Return: the number of characters printed
+ */
+int _printf_format_string(va_list args, const char *format)
+{
+	int i, count = 0;
+	ConvSpec convs[] = {
+	    {"%c", printf_char},
+	    {"%s", printf_string},
+	    {"%%", printf_percent},
+	    {"%d", printf_integer},
+	    {"%i", printf_integer},
+	    {NULL, NULL}};
 
 	for (i = 0; format[i]; i++)
 	{
@@ -45,8 +65,6 @@ int _printf(const char *format, ...)
 			count += _putchar(format[i]);
 		}
 	}
-
-	va_end(args);
 
 	return (count);
 }

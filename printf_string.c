@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * printf_string - prints a string
  * @args: list of args
@@ -8,7 +9,7 @@
 int printf_string(va_list args)
 {
 	char *str;
-	
+
 	int i, count = 0;
 
 	str = va_arg(args, char *);

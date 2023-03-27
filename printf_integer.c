@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * printf_integer - prints an integer
  * @args: the list of args
@@ -8,9 +9,7 @@
 int printf_integer(va_list args)
 {
 	int n = va_arg(args, int);
-
 	char buffer[12];
-
 	int i, count = 0;
 
 	if (n < 0)
@@ -20,8 +19,7 @@ int printf_integer(va_list args)
 	}
 
 	i = 0;
-	do
-	{
+	do {
 		buffer[i++] = n % 10 + '0';
 		n /= 10;
 	} while (n > 0);

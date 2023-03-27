@@ -8,10 +8,11 @@
 #include <unistd.h>
 
 /**
- * struct ConvSpec - represents a conversion specifier in a printf format string
- * @spec: the conversion specifier character, such as 'd', 'f', 's', etc.
- * @func: pointer to the function that implements the conversion for this specifier
+ * struct ConvSpec - represents a printf conversion specifier
+ * @spec: the conversion specifier character, e.g. 'd', 'f', 's'
+ * @func: pointer to the function that implements the conversion
  */
+
 typedef struct ConvSpec
 {
 	char *spec;
@@ -20,6 +21,7 @@ typedef struct ConvSpec
 
 /*Prototypes*/
 int _printf(const char *format, ...);
+int _printf_format_string(va_list args, const char *format);
 int printf_char(va_list arg);
 int printf_string(va_list arg);
 int printf_percent(void);
