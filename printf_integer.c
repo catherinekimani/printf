@@ -1,43 +1,33 @@
 #include "main.h"
-
 /**
- * print_int - prints signed integer number
+ * printf_integer - prints an integer
+ * @args: the list of args
  *
- * @args: argument of integer type
- * @buffer: pointer of 1byte size
- *
- * Return: number of bytes printed
+ * Return: the num of characters printed
  */
-
-int print_int(va_list args, char *buffer)
+int printf_integer(va_list args)
 {
-	int num;
-	unsigned int pos_num, b, digit_num = 1, i = 0;
-	char lett;
+	int n = va_arg(args, int);
 
-	num = va_arg(args, int);
+	char buffer[12];
 
-	if (num < 0)
+	int i, count = 0;
+
+	if (n < 0)
 	{
-		lett = 45;
-		buffer[i] = lett;
-		pos_num = num * -1;
-		i++;
+		count += _putchar('-');
+		n = -n;
 	}
-	else
-		pos_num = num;
 
-	b = pos_num;
+	i = 0;
+	do
+	{
+		buffer[i++] = n % 10 + '0';
+		n /= 10;
+	} while (n > 0);
 
-	while (b > 9)
-	{
-		b /= 10;
-		digit_num *= 10;
-	}
-	for (; digit_num > 0; digit_num /= 10)
-	{
-		lett = ((pos_num / digit_num) + 48);
-		buffer[i] = lett, i++, pos_num %= digit_num;
-	}
-	return (_print_buf(buffer, i));
+	while (--i >= 0)
+		count += _putchar(buffer[i]);
+
+	return (count);
 }
