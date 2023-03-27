@@ -1,13 +1,12 @@
 #include "main.h"
+
 /**
- * printf_percent - prints a percent sign to stdout
- * @arg: the va_list argument (unused)
- *
+ * printf_percent - prints the char 37
+ * 
  * Return: the number of characters printed
  */
-int printf_percent(va_list arg)
+int printf_percent(void)
 {
-	(void)arg;
-	
-	return (_putchar('%'));
+	_putchar(37);
+	return (1);
 }
